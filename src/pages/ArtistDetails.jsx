@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../components/Loader";
+import { SongsContext } from "../context/SongsProvider";
 function ArtistDetails() {
   const { id } = useParams();
   const [artistsSongs, setArtistSongs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { state } = useContext(SongsContext);
 
+  const { currentSongs } = state;
   useEffect(() => {
+    setLoading(true);
     const options = {
       method: "GET",
       headers: {
@@ -13,23 +20,38 @@ function ArtistDetails() {
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
-    let temp = [];
     fetch(
       `https://shazam-core.p.rapidapi.com/v1/artists/details?artist_id=${id}`,
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        temp = response.songs[0];
+        console.log(response);
         setArtistSongs(Object.values(response.songs));
+        setLoading(false);
       })
       .catch((err) => console.error(err));
   }, [id]);
+  let sort = currentSongs.filter((one) => one.artists[0].adamid == id)[0];
+  if (loading) {
+    return <Loader title="Searching for Albums..." />;
+  }
+
   return (
     <div className="text-white">
-      <h1 className="text-white font-bold text-2xl">
+      <h1 className="text-white font-bold text-2xl p-2 ml-5">
         {`${artistsSongs[0]?.attributes?.artistName} Albums`}
       </h1>
+      <div className="flex flex-row sm:justify-start justify-center p-5 text-center">
+        <div className="flex flex-col justify-start">
+          <img
+            src={sort?.images?.background}
+            alt={sort?.subtitle}
+            className="h-[200px] w-[200px] rounded-full "
+          />
+          <p className="mt-5 text-gray-300 cursor-pointer">{state.genere}</p>
+        </div>
+      </div>
       {artistsSongs &&
         artistsSongs.map((one, index) => {
           return (
