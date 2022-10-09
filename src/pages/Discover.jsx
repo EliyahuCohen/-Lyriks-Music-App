@@ -13,7 +13,6 @@ const Discover = () => {
   if (state.isError) {
     return <Error />;
   }
-
   return (
     <div className="flex flex-col">
       <div className="w-full m-auto flex justify-between max-w-[800px] items-center sm:flex-row flex-col mt-4 mb-10">

@@ -3,15 +3,13 @@ import { useState } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
 
-//const fs = require("fs");
-
 export const SongsContext = createContext();
 
 export const getInfo = async (word) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "27a7cd28demsh5088e9fb916981dp140de0jsn1f37c98485a7",
+      "X-RapidAPI-Key": "d60d061c3cmshcd124b1f13d79dap1158efjsnd2d631dc23cd",
       "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
     },
   };
@@ -60,6 +58,7 @@ const SongsReducer = (state, action) => {
         ...state,
         genere: action.payload.gen,
       };
+
     default:
       return state;
   }
