@@ -24,7 +24,7 @@ export const getInfo = async (word) => {
   json = response;
 
   if (!data.ok) {
-    //added backend deployed on heroku
+    //added backend deployed on heroku as a backup
     const info = await fetch(
       `https://shrouded-stream-06343.herokuapp.com/songs/${word}`
     );
