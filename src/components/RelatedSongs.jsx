@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
+import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { SongsContext } from "../context/SongsProvider";
 import PlayPause from "./PlayPause";
@@ -12,7 +13,7 @@ const RelatedSongs = ({ artistID }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "d60d061c3cmshcd124b1f13d79dap1158efjsnd2d631dc23cd",
+        "X-RapidAPI-Key": "eecff1fbe0msh67d89e195487108p1beb7ejsn98eb68674b5d",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
@@ -23,16 +24,17 @@ const RelatedSongs = ({ artistID }) => {
       .then((response) => response.json())
       .then((response) => {
         setData(response);
-        console.log(response);
       })
       .catch((err) => console.error(err));
   }, []);
+  if (data.length == 0) {
+    return <Loader />;
+  }
   return (
     <div>
       <h1 className="text-white font-bold text-3xl mb-5">Related Songs:</h1>
       {data?.length > 0 &&
         data.map((single, index) => {
-          console.log(single);
           return (
             <div className=" flex flex-row items-center w-full hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2 topSongs">
               <h3 className="font-bold text-base text-white mr-3">
@@ -55,11 +57,11 @@ const RelatedSongs = ({ artistID }) => {
                   </Link>
                   <Link to={`/artists/${artistID}`}>
                     <p className="text-ase text-gray-300 mt-1">
-                      {single?.title}
+                      {single?.subtitle}
                     </p>
                   </Link>
                 </div>
-                <PlayPause activeSong={state.activeSong} song={single} />
+                <PlayPause activeSong={state?.activeSong} song={single} />
               </div>
             </div>
           );
