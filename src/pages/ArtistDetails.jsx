@@ -16,10 +16,11 @@ function ArtistDetails() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "eecff1fbe0msh67d89e195487108p1beb7ejsn98eb68674b5d",
+        "X-RapidAPI-Key": "4f3f2c9fd6msh7b8cffed28ae773p1b1ad2jsn44e07b34bd9c",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
+    console.log(sort);
     fetch(
       `https://shazam-core.p.rapidapi.com/v1/artists/details?artist_id=${id}`,
       options
