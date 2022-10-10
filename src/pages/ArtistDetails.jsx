@@ -16,11 +16,10 @@ function ArtistDetails() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "4f3f2c9fd6msh7b8cffed28ae773p1b1ad2jsn44e07b34bd9c",
+        "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
-    console.log(sort);
     fetch(
       `https://shazam-core.p.rapidapi.com/v1/artists/details?artist_id=${id}`,
       options
@@ -33,8 +32,9 @@ function ArtistDetails() {
       })
       .catch((err) => console.error(err));
   }, [id]);
+
   let sort = currentSongs.filter((one) => one.artists[0].adamid == id)[0];
-  if (loading) {
+  if (loading || !artistsSongs) {
     return <Loader title="Searching for Albums..." />;
   }
 

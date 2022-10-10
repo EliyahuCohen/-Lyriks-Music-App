@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SongsContext } from "../context/SongsProvider";
-import { DetailsHeader, RelatedSongs } from "../components";
+import { RelatedSongs } from "../components";
 import { Loader } from "../components";
+import PlayPause from "../components/PlayPause";
 
 const SongDetails = () => {
   const { songid } = useParams();
@@ -21,7 +22,7 @@ const SongDetails = () => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "4f3f2c9fd6msh7b8cffed28ae773p1b1ad2jsn44e07b34bd9c",
+        "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
@@ -34,20 +35,26 @@ const SongDetails = () => {
         setSongsData(response);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {});
   }, [songid]);
   if (loading) {
     return <Loader title="Loading Song Details..." />;
   } else if (loading == false && songData != {} && song != {}) {
     return (
       <div className="flex flex-col px-10 mt-11">
-        <div className="flex flex-row items-center mb-10">
+        <div className="flex flex-row justify-start items-center mb-10">
           (
-          <img
-            className="h-[100px] w-[100px] rounded-lg object-contain"
-            src={song?.images?.background}
-            alt=""
-          />
+          <div className="flex flex-col justify-start items-start">
+            <PlayPause
+              className="cursor-pointer"
+              activeSong={state.activeSong}
+              song={song}
+            />
+            <img
+              className="mt-5 h-[100px] w-[100px] rounded-lg object-contain"
+              src={song?.images?.background}
+            />
+          </div>
           )
           <div className="ml-2">
             <h1 className="text-white truncate font-bold text-2xl">
@@ -76,7 +83,6 @@ const SongDetails = () => {
             )}
           </div>
         </div>
-        {console.log(song)}
         <RelatedSongs artistID={song?.key} />
       </div>
     );

@@ -2,18 +2,20 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import Loader from "./Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SongsContext } from "../context/SongsProvider";
 import PlayPause from "./PlayPause";
 
 const RelatedSongs = ({ artistID }) => {
+  const navigate = useNavigate;
+
   const [data, setData] = useState([]);
   const { state } = useContext(SongsContext);
   useEffect(() => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "4f3f2c9fd6msh7b8cffed28ae773p1b1ad2jsn44e07b34bd9c",
+        "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
@@ -26,8 +28,8 @@ const RelatedSongs = ({ artistID }) => {
         setData(response);
       })
       .catch((err) => console.error(err));
-  }, []);
-  if (data.length == 0) {
+  }, [artistID]);
+  if (!data) {
     return <Loader />;
   }
   return (
@@ -35,6 +37,7 @@ const RelatedSongs = ({ artistID }) => {
       <h1 className="text-white font-bold text-3xl mb-5">Related Songs:</h1>
       {data?.length > 0 &&
         data.map((single, index) => {
+          console.log(single);
           return (
             <div className=" flex flex-row items-center w-full hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2 topSongs">
               <h3 className="font-bold text-base text-white mr-3">

@@ -9,7 +9,7 @@ const PlayPause = ({ activeSong, song }) => {
       type: "PLAY_SONG",
       payload: {
         activeSong: song,
-        isPlaying: !state.isPlaying,
+        isPlaying: !state?.isPlaying,
       },
     });
     window.scrollTo(0, 0);
@@ -22,11 +22,10 @@ const PlayPause = ({ activeSong, song }) => {
         isPlaying: !state.isPlaying,
       },
     });
-    console.log(state.isPlaying);
   };
   return (
     <div className="flex justify-center items-center">
-      {state.isPlaying && activeSong?.title === song.title ? (
+      {state?.isPlaying && activeSong?.title === song?.title ? (
         <FaPauseCircle
           size={35}
           className="text-gray-300"

@@ -9,7 +9,7 @@ export const getInfo = async (word) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "4f3f2c9fd6msh7b8cffed28ae773p1b1ad2jsn44e07b34bd9c",
+      "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
       "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
     },
   };

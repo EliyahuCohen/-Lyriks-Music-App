@@ -46,7 +46,7 @@ const Discover = () => {
           state?.currentSongs.map((song, i) => {
             return (
               <SongCard
-                key={song.key}
+                key={song.key + "eliyahu"}
                 song={song}
                 isPlaying={song.isPlaying}
                 activeSong={song.activeSong}
