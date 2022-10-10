@@ -15,7 +15,7 @@ const RelatedSongs = ({ artistID }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
+        "X-RapidAPI-Key": "def25a9515mshef63d93954f85c8p1ef419jsn69d6085cdc9a",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
