@@ -63,7 +63,7 @@ function SongBar({ song }) {
   };
 
   return (
-    <div className="flex justify-between items-center p-5 w-full">
+    <div className="relative p-6 w-full flex justify-between items-center">
       <div className="flex items-center justify-center">
         <img
           className="rounded-full object-contain h-14 w-14"

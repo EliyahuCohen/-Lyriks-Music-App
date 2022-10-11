@@ -37,7 +37,6 @@ const RelatedSongs = ({ artistID }) => {
       <h1 className="text-white font-bold text-3xl mb-5">Related Songs:</h1>
       {data?.length > 0 &&
         data.map((single, index) => {
-          console.log(single);
           return (
             <div
               key={single?.key}
@@ -68,7 +67,7 @@ const RelatedSongs = ({ artistID }) => {
                         : `/top-artists`
                     }
                   >
-                    <p className=" text-gray-300">{single.subtitle}</p>
+                    <p className=" text-white">{single.subtitle}</p>
                   </Link>
                 </div>
                 <PlayPause activeSong={state?.activeSong} song={single} />

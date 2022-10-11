@@ -9,7 +9,7 @@ const App = () => {
   const { state, dispatch } = useContext(SongsContext);
 
   return (
-    <div className="absolute right-0 flex top-0 left-0 bottom-0">
+    <div className="absolute  flex top-0 left-0 bottom-0 w-full">
       <Sidebar className="z-50" />
       <div className="flex-1 flex min-w-[500px] flex-col bg-gradient-to-br from-black to-[#121286]">
         <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
@@ -29,7 +29,7 @@ const App = () => {
       </div>
 
       {state.activeSong?.title && (
-        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+        <div className="absolute b h-28  bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10 rounded-xlg">
           <SongBar song={state.activeSong} />
         </div>
       )}

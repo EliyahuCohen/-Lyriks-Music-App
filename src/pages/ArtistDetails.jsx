@@ -26,7 +26,6 @@ function ArtistDetails() {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setArtistSongs(Object.values(response.songs));
         setLoading(false);
       })
