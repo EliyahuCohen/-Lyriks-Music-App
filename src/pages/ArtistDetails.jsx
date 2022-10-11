@@ -40,7 +40,7 @@ function ArtistDetails() {
 
   return (
     <div className="text-white">
-      <h1 className="text-white font-bold text-2xl p-2 ml-5">
+      <h1 className="text-white font-bold text-2xl p-2 ml-5 capitalize">
         {`${artistsSongs[0]?.attributes?.artistName} Albums`}
       </h1>
       <div className="flex flex-row sm:justify-start justify-center p-5 text-center">

@@ -9,16 +9,10 @@ import PlayPause from "../components/PlayPause";
 
 const SongDetails = () => {
   const { songid } = useParams();
-  const { state, dispatch } = useContext(SongsContext);
-  const [song, setSong] = useState({});
+  const { state } = useContext(SongsContext);
   const [songData, setSongsData] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setLoading(true);
-    if (state.currentSongs.length > 0) {
-      const some = state.currentSongs.filter((one) => one.key == songid)[0];
-      setSong(some);
-    }
     const options = {
       method: "GET",
       headers: {
@@ -26,6 +20,7 @@ const SongDetails = () => {
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
+    setLoading(true);
     fetch(
       `https://shazam-core.p.rapidapi.com/v1/tracks/details?track_id=${songid}`,
       options
@@ -35,58 +30,50 @@ const SongDetails = () => {
         setSongsData(response);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => console.error(err));
   }, [songid]);
   if (loading) {
     return <Loader title="Loading Song Details..." />;
-  } else if (loading == false && songData != {} && song != {}) {
-    return (
-      <div className="flex flex-col px-10 mt-11">
-        <div className="flex flex-row justify-start items-center mb-10">
-          (
-          <div className="flex flex-col justify-start items-start">
-            <PlayPause
-              className="cursor-pointer"
-              activeSong={state.activeSong}
-              song={song}
-            />
-            <img
-              className="mt-5 h-[100px] w-[100px] rounded-lg object-contain"
-              src={song?.images?.background}
-            />
-          </div>
-          )
-          <div className="ml-2">
-            <h1 className="text-white truncate font-bold text-2xl">
-              {song?.title}
-            </h1>
-            <Link to={`/artists/${songData?.artists[0]?.adamid}`}>
-              <p className="text-gray-300 truncate">{song?.subtitle}</p>
-            </Link>
-          </div>
-        </div>
-        <div className="mb-10">
-          <h2 className="text-white text-2xl font-bold">Lyrics:</h2>
-          <div className="mt-5">
-            {songData?.sections[1].type === "LYRICS" ? (
-              songData?.sections[1].text.map((line, i) => {
-                return (
-                  <p className="text-gray-400 text-base my-1" key={i}>
-                    {line}
-                  </p>
-                );
-              })
-            ) : (
-              <p className="text-gray-400 text-base ">
-                Sorry , no lyrics found
-              </p>
-            )}
-          </div>
-        </div>
-        <RelatedSongs artistID={song?.key} />
-      </div>
-    );
   }
+  return (
+    <div className="flex flex-col px-10 mt-11">
+      <div className="flex flex-row justify-start items-center mb-10">
+        (
+        <div className="flex flex-col justify-start items-start">
+          <img
+            className="mt-5 h-[100px] w-[100px] rounded-lg object-contain"
+            src={songData?.images?.background}
+          />
+        </div>
+        )
+        <div className="ml-2">
+          <h1 className="text-white truncate font-bold text-2xl">
+            {songData?.title}
+          </h1>
+          <Link to={`/artists/${songData?.artists[0]?.adamid}`}>
+            <p className="text-gray-300 truncate">{songData?.subtitle}</p>
+          </Link>
+        </div>
+      </div>
+      <div className="mb-10">
+        <h2 className="text-white text-2xl font-bold">Lyrics:</h2>
+        <div className="mt-5">
+          {songData?.sections[1].type === "LYRICS" ? (
+            songData?.sections[1].text.map((line, i) => {
+              return (
+                <p className="text-gray-400 text-base my-1" key={i}>
+                  {line}
+                </p>
+              );
+            })
+          ) : (
+            <p className="text-gray-400 text-base ">Sorry , no lyrics found</p>
+          )}
+        </div>
+      </div>
+      <RelatedSongs artistID={songData?.key} />
+    </div>
+  );
 };
 
 export default SongDetails;

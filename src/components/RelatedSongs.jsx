@@ -39,7 +39,10 @@ const RelatedSongs = ({ artistID }) => {
         data.map((single, index) => {
           console.log(single);
           return (
-            <div className=" flex flex-row items-center w-full hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2 topSongs">
+            <div
+              key={single?.key}
+              className=" flex flex-row items-center w-full hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2 topSongs"
+            >
               <h3 className="font-bold text-base text-white mr-3">
                 {index + 1}.
               </h3>
@@ -58,10 +61,14 @@ const RelatedSongs = ({ artistID }) => {
                       {single?.title}
                     </p>
                   </Link>
-                  <Link to={`/artists/${artistID}`}>
-                    <p className="text-ase text-gray-300 mt-1">
-                      {single?.subtitle}
-                    </p>
+                  <Link
+                    to={
+                      single.artists
+                        ? `/artists/${single?.artists[0]?.adamid}`
+                        : `/top-artists`
+                    }
+                  >
+                    <p className=" text-gray-300">{single.subtitle}</p>
                   </Link>
                 </div>
                 <PlayPause activeSong={state?.activeSong} song={single} />
