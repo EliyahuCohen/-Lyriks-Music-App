@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { SongsContext } from "../context/SongsProvider";
 import { RelatedSongs } from "../components";
 import { Loader } from "../components";
-import PlayPause from "../components/PlayPause";
 
 const SongDetails = () => {
   const { songid } = useParams();
@@ -16,7 +15,7 @@ const SongDetails = () => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "def25a9515mshef63d93954f85c8p1ef419jsn69d6085cdc9a",
+        "X-RapidAPI-Key": "16fce8fabdmsh82fc5d10bfa6592p1ffb4fjsnfb3b40a2b97b",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };

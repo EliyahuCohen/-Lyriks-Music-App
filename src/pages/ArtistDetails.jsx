@@ -16,7 +16,7 @@ function ArtistDetails() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "bba113f3c3mshf4f897066f62f43p12d16bjsnddbb1f694897",
+        "X-RapidAPI-Key": "16fce8fabdmsh82fc5d10bfa6592p1ffb4fjsnfb3b40a2b97b",
         "X-RapidAPI-Host": "shazam-core.p.rapidapi.com",
       },
     };
