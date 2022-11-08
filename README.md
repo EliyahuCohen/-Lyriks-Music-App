@@ -2,7 +2,7 @@ Eliyahu Cohen music app project
 this project is an example of me working with API's and the main one is Shazam Core from RapidAPI
 examples bellow
 
-![image](https://user-images.githubusercontent.com/100947769/200586377-a671b22a-d0ea-4ffc-ae1b-16c549e58a3a.png)
+![image](https://user-images.githubusercontent.com/100947769/200587751-c1561b86-83e5-4f68-af31-764fa6b34b9f.png)
 
 while sone is playing in the background we will have the song bar at the bottom of the screen
 ![image](https://user-images.githubusercontent.com/100947769/200586549-07cea01a-2ffb-464b-92c4-6aff82279dd2.png)
